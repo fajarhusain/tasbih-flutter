@@ -37,7 +37,7 @@ class TasbihApp extends StatelessWidget {
         ),
       ),
       home: const SplashScreen(),
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -174,27 +174,29 @@ class _TasbihHomePageState extends State<TasbihHomePage> {
             ),
             const SizedBox(height: 12),
             Expanded(
-              child: _rekapList.isEmpty
-                  ? const Center(
-                      child: Text(
-                        "Belum ada rekap.",
-                        style: TextStyle(color: Color(0xFF4CAF50)),
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount: _rekapList.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading:
-                              const Icon(Icons.check_circle, color: Color(0xFF388E3C)),
-                          title: Text(
-                            'Hitungan ke-${_rekapList[index]}',
-                            style: const TextStyle(color: Color(0xFF2E7D32)),
-                          ),
-                        );
-                      },
-                    ),
-            ),
+  child: _rekapList.isEmpty
+      ? const Center(
+          child: Text(
+            "Belum ada rekap.",
+            style: TextStyle(color: Color(0xFF4CAF50)),
+          ),
+        )
+      : Scrollbar( // Tambahkan Scrollbar untuk visual scroll
+          child: ListView.builder(
+            itemCount: _rekapList.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(Icons.check_circle, color: Color(0xFF388E3C)),
+                title: Text(
+                  'Hitungan ke-${_rekapList[index]}',
+                  style: const TextStyle(color: Color(0xFF2E7D32)),
+                ),
+              );
+            },
+          ),
+        ),
+),
+
           ],
         ),
       ),
@@ -205,13 +207,13 @@ class _TasbihHomePageState extends State<TasbihHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 62,
+              height: 192,
               width: double.infinity,
               child: ElevatedButton.icon(
-                icon: const Icon(Icons.fingerprint, size: 28),
+                icon: const Icon(Icons.fingerprint, size: 28,color: Colors.white,),
                 label: const Text(
                   'Dzikir',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF2E7D32),
@@ -225,7 +227,7 @@ class _TasbihHomePageState extends State<TasbihHomePage> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Developed by PATITECH SOLUTION',
+              'Developed by PATITECH.ID',
               style: TextStyle(fontSize: 13, color: Colors.grey),
             ),
             
